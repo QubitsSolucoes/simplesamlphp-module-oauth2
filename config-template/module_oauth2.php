@@ -24,7 +24,9 @@ $config = [
     'auth' => 'default-sp',
     // useridattr is the attribute-name that contains the userid as returned from idp
     'useridattr' => 'uid',
-
+    
+    'key_permissions_check' => false,
+    
     // You can create as many scopes as you want and assign attributes to them
     // WIP: Actually only basic scope is supported with all the attributes
     'scopes' => [

@@ -37,9 +37,10 @@ class OAuth2AuthorizationServer
         $authCodeDuration = $oauth2config->getString('authCodeDuration');
         $passPhrase = $oauth2config->getString('pass_phrase', null);
         $refreshTokenDuration = $oauth2config->getString('refreshTokenDuration');
+        $keyPermissionsCheck = $oauth2config->getBoolean('key_permissions_check');
 
         $privateKeyPath = Config::getCertPath('oauth2_module.pem');
-        $privateKey = new CryptKey($privateKeyPath, $passPhrase);
+        $privateKey = new CryptKey($privateKeyPath, $passPhrase, $keyPermissionsCheck);
         $encryptionKey = Config::getSecretSalt();
 
         self::$instance = new AuthorizationServer(
