@@ -26,7 +26,9 @@ class OAuth2ResourceServer
         }
 
         $publicKeyPath = Config::getCertPath('oauth2_module.crt');
-        $publicKey = new CryptKey($publicKeyPath);
+        $oauth2config = \SimpleSAML_Configuration::getConfig('module_oauth2.php');
+        $keyPermissionsCheck = $oauth2config->getBoolean('key_permissions_check');
+        $publicKey = new CryptKey($publicKeyPath, null, $keyPermissionsCheck);
 
         self::$instance = new ResourceServer(
             new AccessTokenRepository(),
